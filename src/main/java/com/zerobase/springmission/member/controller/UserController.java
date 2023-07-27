@@ -1,9 +1,8 @@
-package com.zerobase.springmission.controller;
+package com.zerobase.springmission.member.controller;
 
-import com.zerobase.springmission.dto.SignUp;
-import com.zerobase.springmission.service.UserService;
+import com.zerobase.springmission.member.dto.SignUp;
+import com.zerobase.springmission.member.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
+
     UserService userService;
 
+
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody SignUp.Request signUpRequest) {
-//        SignUp.Response signUpResponse = userService.signUp(signUpRequest);
-        return;
+    public SignUp.Response signUp(@RequestBody SignUp.Request signUpRequest) {
+        return userService.signUp(signUpRequest);
     }
 
     @PostMapping("/sign-in")
