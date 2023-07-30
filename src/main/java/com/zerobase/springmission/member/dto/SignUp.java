@@ -1,6 +1,7 @@
 package com.zerobase.springmission.member.dto;
 
-import com.zerobase.springmission.global.config.type.UserType;
+import com.zerobase.springmission.member.domain.Member;
+import com.zerobase.springmission.member.type.MemberType;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,11 +14,19 @@ public class SignUp {
     @NoArgsConstructor
     public static class Request {
 
-        private String userName;
+        private String memberId;
         private String password;
         private String phone;
-        private LocalDateTime regDate;
-        private UserType userType;
+        private MemberType memberType;
+
+        public Member toEntity() {
+            return Member.builder()
+                    .memberId(this.getMemberId())
+                    .password(this.getPassword())
+                    .phone(this.getPhone())
+                    .memberType(this.getMemberType())
+                    .build();
+        }
     }
 
     @Getter
@@ -26,10 +35,16 @@ public class SignUp {
     @AllArgsConstructor
     @Builder
     public static class Response {
-        private String userName;
-        private String password;
-        private String phone;
+        private String memberId;
         private LocalDateTime regDate;
-        private UserType userType;
+        private MemberType memberType;
+
+        public static Response fromEntity(Member member) {
+            return Response.builder()
+                    .memberId(member.getMemberId())
+                    .regDate(member.getRegDate())
+                    .memberType(member.getMemberType())
+                    .build();
+        }
     }
 }
