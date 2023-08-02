@@ -64,7 +64,7 @@ public class StoreService {
 
     private void checkDuplicateStoreName(RegisterStore.Request registerStoreRequest) {
         if (storeRepository.existsByStoreName(registerStoreRequest.getStoreName())
-        || storeRepository.existsByAddress(registerStoreRequest.getAddress())) {
+                || storeRepository.existsByAddress(registerStoreRequest.getAddress())) {
             throw new StoreException(STORE_ALREADY_EXIST);
         }
     }
@@ -96,12 +96,19 @@ public class StoreService {
                 .findAllByOrderByRatingDesc(pageable));
     }
 
-    private Page<StoreResponse> getStoresByDistance(Pageable pageable, Double lat, Double lnt) {
+    private Page<StoreResponse> getStoresByDistance(Pageable pageable,
+                                                    Double lat, Double lnt) {
         return StoreResponse.fromResults(storeRepository
                 .findAllByOrderByDistanceAsc(pageable, lat, lnt));
     }
 
     public StoreResponse getStore(String storeName) {
+        boolean exist = storeRepository.existsByStoreName(storeName);
+
+        if (exist) {
+            throw new StoreException(STORE_NOT_FOUND);
+        }
+
         return StoreResponse.fromEntity(storeRepository
                 .findByStoreName(storeName));
     }

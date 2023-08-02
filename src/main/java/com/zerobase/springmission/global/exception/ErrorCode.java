@@ -15,7 +15,8 @@ public enum ErrorCode {
     WRONG_RESPONSE("잘못된 응답입니다."),
     RESULT_NOT_FOUND("검색결과가 없습니다."),
     STORE_EMPTY("등록된 매장이 없습니다."),
-    WRONG_SORTINGTYPE("정렬조건이 잘못되었습니다.");
+    WRONG_SORTINGTYPE("정렬조건이 잘못되었습니다."),
+    STORE_NOT_FOUND("매장정보가 없습니다.");
 //    ACCOUNT_TRANSACTION_LOCK("해당 계좌는 사용 중입니다."),
 //    TRANSACTION_NOT_FOUND("해당 거래가 없습니다."),
 //    AMOUNT_EXCEED_BALANCE("거래 금액이 계좌 잔액보다 큽니다."),
