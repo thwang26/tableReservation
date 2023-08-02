@@ -13,7 +13,6 @@ public class SignUp {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Request {
-
         private String memberId;
         private String password;
         private String phone;

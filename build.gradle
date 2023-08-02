@@ -30,6 +30,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'mysql:mysql-connector-java'
     // 이거 해 주니까 오류 풀림
+    implementation 'com.google.code.gson:gson:2.10.1'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'

@@ -23,9 +23,9 @@ public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String memberName) throws UsernameNotFoundException {
-        return memberRepository.findByMemberName(memberName)
-                .orElseThrow(() -> new UsernameNotFoundException("couldn't find user -> " + memberName));
+    public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+        return memberRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new UsernameNotFoundException("couldn't find user -> " + memberId));
     }
 
     @Transactional

@@ -8,10 +8,14 @@ import lombok.Getter;
 public enum ErrorCode {
     ACCOUNT_ALREADY_REGISTERED("이미 가입된 회원입니다."),
     ACCOUNT_DOES_NOT_EXIST("회원정보가 존재하지 않습니다."),
-    PASSWORD_DOES_NOT_MATCH("비밀번호가 일치하지 않습니다.");
-//    INVALID_REQUEST("잘못된 요청입니다."),
-//    USER_NOT_FOUND("사용자가 없습니다."),
-//    ACCOUNT_NOT_FOUND("계좌가 없습니다."),
+    PASSWORD_DOES_NOT_MATCH("비밀번호가 일치하지 않습니다."),
+    USER_NOT_FOUND("사용자가 없습니다."),
+    NOT_A_PARTNER("매장등록은 파트너 회원만 사용 가능합니다."),
+    STORE_ALREADY_EXIST("이미 등록된 점포입니다."),
+    WRONG_RESPONSE("잘못된 응답입니다."),
+    RESULT_NOT_FOUND("검색결과가 없습니다."),
+    STORE_EMPTY("등록된 매장이 없습니다."),
+    WRONG_SORTINGTYPE("정렬조건이 잘못되었습니다.");
 //    ACCOUNT_TRANSACTION_LOCK("해당 계좌는 사용 중입니다."),
 //    TRANSACTION_NOT_FOUND("해당 거래가 없습니다."),
 //    AMOUNT_EXCEED_BALANCE("거래 금액이 계좌 잔액보다 큽니다."),

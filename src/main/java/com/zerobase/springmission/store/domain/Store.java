@@ -3,10 +3,9 @@ package com.zerobase.springmission.store.domain;
 import com.zerobase.springmission.member.domain.Member;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -18,16 +17,21 @@ import java.time.LocalDateTime;
 public class Store {
 
     @ManyToOne
-    private Member partnerId;
+    @JoinColumn(name = "member_id")
+    private Member member;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String storeName;
     private String address;
     private String storePhone;
-    private Double lnt;
-    private Double lat;
+    private double lnt;
+    private double lat;
+    private double rating;
 
     @CreatedDate
     private LocalDateTime regDate;
 
+    @LastModifiedDate
+    private LocalDateTime modDate;
 }

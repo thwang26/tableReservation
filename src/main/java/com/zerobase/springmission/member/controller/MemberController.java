@@ -24,7 +24,7 @@ public class MemberController {
 
     @PostMapping("/sign-up")
     public SignUp.Response signUp(@RequestBody SignUp.Request signUpRequest) {
-        log.info("detected new sign-up attempts -> " + signUpRequest.getMemberName());
+        log.info("detected new sign-up attempts -> " + signUpRequest.getMemberId());
         return memberService.createAccount(signUpRequest);
     }
 
@@ -32,7 +32,7 @@ public class MemberController {
     public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest) {
         Member member = memberService.authenticate(signInRequest);
         String token = tokenProvider.generateToken(member.getMemberId(), member.getRoles());
-        log.info("user login -> " + signInRequest.getMemberName());
+        log.info("user login -> " + signInRequest.getMemberId());
         return ResponseEntity.ok(token);
     }
 }

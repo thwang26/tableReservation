@@ -9,7 +9,19 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MemberException.class)
-    public ErrorResponse handleAccountException(MemberException e) {
+    public ErrorResponse handleMemberException(MemberException e) {
+        log.error("{} is occurred.", e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
+
+    @ExceptionHandler(ApiException.class)
+    public ErrorResponse handleApiException(ApiException e) {
+        log.error("{} is occurred.", e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
+
+    @ExceptionHandler(StoreException.class)
+    public ErrorResponse handleStoreException(StoreException e) {
         log.error("{} is occurred.", e.getErrorCode());
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
