@@ -47,6 +47,8 @@ public class StoreService {
                 .lnt(coordinate.getLnt())
                 .lat(coordinate.getLat())
                 .rating(ZERO_STAR.getRating())
+                .openTime(registerStoreRequest.getOpenTime())
+                .closeTime(registerStoreRequest.getCloseTime())
                 .regDate(LocalDateTime.now())
                 .build()));
     }
@@ -105,7 +107,7 @@ public class StoreService {
     public StoreResponse getStore(String storeName) {
         boolean exist = storeRepository.existsByStoreName(storeName);
 
-        if (exist) {
+        if (!exist) {
             throw new StoreException(STORE_NOT_FOUND);
         }
 

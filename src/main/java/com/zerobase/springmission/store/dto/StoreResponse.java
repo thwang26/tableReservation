@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,8 @@ public class StoreResponse {
     private String storePhone;
     private String address;
     private double rating;
+    private LocalTime openTime;
+    private LocalTime closeTime;
     private double distance;
 
     public static Page<StoreResponse> fromEntities(Page<Store> page) {
@@ -29,6 +32,8 @@ public class StoreResponse {
                         .storePhone(store.getStorePhone())
                         .address(store.getAddress())
                         .rating(store.getRating())
+                        .openTime(store.getOpenTime())
+                        .closeTime(store.getCloseTime())
                         .build()).collect(Collectors.toList()));
     }
 
@@ -41,6 +46,8 @@ public class StoreResponse {
                         .address(storeResult.getStore().getAddress())
                         .rating(storeResult.getStore().getRating())
                         .distance(storeResult.getDistance())
+                        .openTime(storeResult.getStore().getOpenTime())
+                        .closeTime(storeResult.getStore().getCloseTime())
                         .build()).collect(Collectors.toList()));
     }
 
@@ -50,6 +57,8 @@ public class StoreResponse {
                 .storePhone(store.getStorePhone())
                 .address(store.getAddress())
                 .rating(store.getRating())
+                .openTime(store.getOpenTime())
+                .closeTime(store.getCloseTime())
                 .build();
     }
 }

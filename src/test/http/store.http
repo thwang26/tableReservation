@@ -1,0 +1,22 @@
+###
+POST http://localhost:8080/store/register-store
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DssJDsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTA5Mzg2OCwiZXhwIjoxNjkxMDk3NDY4fQ.aXtoz08A6IRXaVvs5b9ojLeMuXFaVhK3hK_YSHolT_s8Q8wIQbr1zKjppNg3OzYys28DjiY-Cfq-kTWSFRcrGA
+Content-Type: application/json
+
+{
+  "memberId": "황태원찐점장",
+  "storeName": "부천원종6점",
+  "address": "삼작로 368번길 15-15",
+  "storePhone": "010-4848-8253",
+  "openTime": "09:00",
+  "closeTime": "21:00"
+}
+
+###
+GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=DISTANCE&lat=37.5189507&lnt=126.8033512
+###
+GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=NAME&lat=37.5189507&lnt=126.8033512
+###
+GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=RATING&lat=37.5189507&lnt=126.8033512
+###
+GET http://localhost:8080/store/get-store?storeName=부천원종점

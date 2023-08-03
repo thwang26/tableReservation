@@ -17,25 +17,3 @@ Content-Type: application/json
   "memberId": "황태원찐점장",
   "password": "secretpassword"
 }
-
-###
-POST http://localhost:8080/store/register-store
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DssJDsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTAxMjcwMiwiZXhwIjoxNjkxMDE2MzAyfQ.WZI8H62eeOMbdjZ6XaUif7VX0XBIjHB6KZ2GnCxF9WGTFcOmkum1j20J100TYP_Lc7T6jKy8POoIZf5hY6v7vA
-Content-Type: application/json
-
-{
-  "memberId": "황태원찐점장",
-  "storeName": "부천원종점",
-  "address": "삼작로 368번길 15-12 원종이편한세상",
-  "storePhone": "010-1234-1234"
-}
-
-###
-GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=DISTANCE&lat=37.5189507&lnt=126.8033512
-###
-GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=NAME&lat=37.5189507&lnt=126.8033512
-###
-GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=RATING&lat=37.5189507&lnt=126.8033512
-###
-GET http://localhost:8080/store/get-store?storeName=부천원종점
-

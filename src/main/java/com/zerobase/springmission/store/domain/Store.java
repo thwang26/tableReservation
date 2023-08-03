@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -27,6 +28,8 @@ public class Store {
     private String storePhone;
     private double lnt;
     private double lat;
+    private LocalTime openTime;
+    private LocalTime closeTime;
     private double rating;
 
     @CreatedDate
