@@ -1,0 +1,45 @@
+###
+GET http://localhost:8080/reservation/available-reservation-time?storeName=부천원종점
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5gzIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2OTEzNTUxNTIsImV4cCI6MTY5MTM1ODc1Mn0.wm-NB7EzlfBsmXGb8ssYrnUvFdjlNqmj5_RSIzxyXS3n27D08hnVb8g4koV5RXM_XKjzQDRRDVSLcFi5wb9PvA
+
+###
+POST http://localhost:8080/reservation/request-reservation
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5gzIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2OTEzNTUxNTIsImV4cCI6MTY5MTM1ODc1Mn0.wm-NB7EzlfBsmXGb8ssYrnUvFdjlNqmj5_RSIzxyXS3n27D08hnVb8g4koV5RXM_XKjzQDRRDVSLcFi5wb9PvA
+Content-Type: application/json
+
+{
+  "storeName": "부천원종점",
+  "reservationDate": "2023-08-07",
+  "reservationTime": "06:00"
+}
+
+###
+POST http://localhost:8080/reservation/accept-reservation
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTM1MzQ1NSwiZXhwIjoxNjkxMzU3MDU1fQ.OFa9rQFDr5klRbNlOv13u9sbZH8RC9JHrFTh7YArjKxJgb_2enWqWI4v-qxQiZ1C01q7jM234jt_Vjpt_B-IKQ
+Content-Type: application/json
+
+{
+  "reservationId": "23080707100C"
+}
+
+###
+POST http://localhost:8080/reservation/cancel-reservation
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTM1MzQ1NSwiZXhwIjoxNjkxMzU3MDU1fQ.OFa9rQFDr5klRbNlOv13u9sbZH8RC9JHrFTh7YArjKxJgb_2enWqWI4v-qxQiZ1C01q7jM234jt_Vjpt_B-IKQ
+Content-Type: application/json
+
+{
+  "reservationId": "23080609100JCY"
+}
+
+###
+POST http://localhost:8080/reservation/use-reservation
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5gzIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2OTEzNTUyNDMsImV4cCI6MTY5MTM1ODg0M30.KtGHsBS_CovcLUKeeGUYubXgpiF398IOktR6VWgn2l3d0dpHodkuo4n1WG6jDIVx2m-savlE_mZl_VCNzQerqQ
+Content-Type: application/json
+
+{
+  "reservationId": "23080707100C"
+}
+
+###
+GET http://localhost:8080/reservation/get-reservation
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5giLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTY5MTM2MTU1OSwiZXhwIjoxNjkxMzY1MTU5fQ.uCybnHb3ifAJ38KJMZ41-w1GdrXPC2W1XWA246eBkSxgVbyi6z3EPOkuB1D-rioSZ8L9soo2PF847zkMFrVjmw

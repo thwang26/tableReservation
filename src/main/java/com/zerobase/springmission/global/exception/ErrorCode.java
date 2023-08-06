@@ -16,17 +16,17 @@ public enum ErrorCode {
     RESULT_NOT_FOUND("검색결과가 없습니다."),
     STORE_EMPTY("등록된 매장이 없습니다."),
     WRONG_SORTINGTYPE("정렬조건이 잘못되었습니다."),
-    STORE_NOT_FOUND("매장정보가 없습니다.");
-//    ACCOUNT_TRANSACTION_LOCK("해당 계좌는 사용 중입니다."),
-//    TRANSACTION_NOT_FOUND("해당 거래가 없습니다."),
-//    AMOUNT_EXCEED_BALANCE("거래 금액이 계좌 잔액보다 큽니다."),
-//    TRANSACTION_ACCOUNT_UN_MATCH("이 거래는 해당 계좌에서 발생한 거래가 아닙니다."),
-//    CANCEL_MUST_FULLY("부분 취소는 허용되지 않습니다."),
-//    TOO_OLD_ORDER_TO_CANCEL("1년이 지난 거래는 취소가 불가능합니다."),
-//    USER_ACCOUNT_UN_MATCH("사용자와 계좌의 소유주가 다릅니다."),
-//    ACCOUNT_ALREADY_UNREGISTERED("계좌가 이미 해지되었습니다."),
-//    BALANCE_NOT_EMPTY("잔액이 있는 계좌는 해지할 수 없습니다."),
-//    MAX_ACCOUNT_PER_USER_10("사용자 최대 계좌는 10개입니다.");
+    STORE_NOT_FOUND("매장정보가 없습니다."),
+    RESERVATION_NOT_FOUND("예약정보가 없습니다."),
+    ALREADY_ACCEPTED("이미 승인된 예약입니다."),
+    ALREADY_CANCELLED("이미 취소된 예약입니다."),
+    ALREADY_COMPLETED("이미 사용된 예약입니다."),
+    ALREADY_EXPIRED("이미 예약시간이 지난 예약입니다."),
+    NO_CHANGE_PERMISSION("예약변경 권한이 없습니다."),
+    UN_ACCEPTED_RESERVATION("사용할 수 없는 예약입니다."),
+    NO_USE_PERMISSION("예약사용 권한이 없습니다."),
+    RESERVATION_TIME_EXCEEDED("예약시간을 초과하였습니다."),
+    CANNOT_BE_RESERVED("예약할 수 없는 날짜입니다.");
 
     private String description;
 }

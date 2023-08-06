@@ -1,80 +1,34 @@
-//package com.zerobase.springmission.reservation.domain;
-//
-//import com.zerobase.springmission.member.type.MemberType;
-//import lombok.*;
-//import org.springframework.data.annotation.CreatedDate;
-//import org.springframework.data.annotation.LastModifiedDate;
-//import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-//
-//import javax.persistence.*;
-//import java.time.LocalDateTime;
-//import java.util.ArrayList;
-//import java.util.Collection;
-//import java.util.List;
-//
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Builder
-//@Entity
-//@EntityListeners(AuditingEntityListener.class)
-//public class Reservation implements UserDetails {
-//
-//    @Id
-//    private String memberId;
-//
-//    private String password;
-//
-//    private String phone;
-//
-//    @CreatedDate
-//    private LocalDateTime regDate;
-//
-//    @LastModifiedDate
-//    private LocalDateTime modDate;
-//
-//    @Enumerated(EnumType.STRING)
-//    private MemberType memberType;
-//
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        Collection<GrantedAuthority> authorities = new ArrayList<>();
-//        authorities.add(new SimpleGrantedAuthority("ROLE_" + memberType.toString()));
-//        return authorities;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return memberId;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return false;
-//    }
-//
-//    public List<String> getRoles() {
-//        List<String> list = new ArrayList<>();
-//        list.add(memberType.toString());
-//        return list;
-//    }
-//}
+package com.zerobase.springmission.reservation.domain;
+
+import com.zerobase.springmission.member.domain.Member;
+import com.zerobase.springmission.reservation.type.ReservationType;
+import com.zerobase.springmission.store.domain.Store;
+import lombok.*;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Reservation {
+
+    @Id
+    private String reservationId;
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+    private LocalDate reservationDate;
+    private LocalTime reservationTime;
+    @Enumerated(EnumType.STRING)
+    private ReservationType reservationType;
+    private String cancelDescription;
+
+}

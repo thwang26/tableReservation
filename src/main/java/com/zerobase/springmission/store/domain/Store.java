@@ -22,7 +22,7 @@ public class Store {
     private Member member;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long storeId;
     private String storeName;
     private String address;
     private String storePhone;

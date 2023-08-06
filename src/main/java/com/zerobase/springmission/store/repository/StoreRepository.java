@@ -33,4 +33,6 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
                                                   @Param("lnt") Double lnt);
 
     Store findByStoreName(String storeName);
+
+    Store findByStoreId(Long storeId);
 }

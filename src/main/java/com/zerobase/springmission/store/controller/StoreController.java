@@ -1,5 +1,6 @@
 package com.zerobase.springmission.store.controller;
 
+import com.zerobase.springmission.member.domain.Member;
 import com.zerobase.springmission.store.dto.RegisterStore;
 import com.zerobase.springmission.store.dto.StoreResponse;
 import com.zerobase.springmission.store.service.StoreService;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -22,13 +24,16 @@ public class StoreController {
     @PostMapping("/register-store")
     @PreAuthorize("hasRole('PARTNER')")
     public RegisterStore.Response registerStore(
-            @RequestBody RegisterStore.Request registerStoreRequest) throws IOException {
+            @RequestBody RegisterStore.Request registerStoreRequest,
+            Authentication authentication) throws IOException {
+        String memberId = ((Member) authentication.getPrincipal()).getMemberId();
+        registerStoreRequest.setMemberId(memberId);
         return storeService.registerStore(registerStoreRequest);
     }
 
     @GetMapping("/get-stores")
     public Page<StoreResponse> getStores(@RequestParam(required = false, defaultValue = "DISTANCE")
-                                     SortingType sortingType, Pageable pageable,
+                                         SortingType sortingType, Pageable pageable,
                                          @RequestParam(required = false, defaultValue = "0.0") Double lat,
                                          @RequestParam(required = false, defaultValue = "0.0") Double lnt) {
         return storeService.getStores(sortingType, pageable, lat, lnt);

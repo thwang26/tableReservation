@@ -25,4 +25,10 @@ public class GlobalExceptionHandler {
         log.error("{} is occurred.", e.getErrorCode());
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
+
+    @ExceptionHandler(ReservationException.class)
+    public ErrorResponse handleReservationException(ReservationException e) {
+        log.error("{} is occurred.", e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
 }
