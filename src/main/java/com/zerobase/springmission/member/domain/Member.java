@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 회원정보 entity
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,19 +27,37 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Member implements UserDetails {
 
+    /**
+     * 회원 아이디
+     */
     @Id
     private String memberId;
 
+    /**
+     * 비밀번호
+     */
     private String password;
 
+    /**
+     * 전화번호
+     */
     private String phone;
 
+    /**
+     * 가입일자
+     */
     @CreatedDate
     private LocalDateTime regDate;
 
+    /**
+     * 수정일자
+     */
     @LastModifiedDate
     private LocalDateTime modDate;
 
+    /**
+     * 회원종류, 일반회원 or 파트너회원
+     */
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 

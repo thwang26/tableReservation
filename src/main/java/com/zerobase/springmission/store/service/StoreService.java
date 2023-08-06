@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 import static com.zerobase.springmission.global.exception.ErrorCode.*;
-import static com.zerobase.springmission.store.type.RatingType.ZERO_STAR;
+import static com.zerobase.springmission.review.type.RatingType.ZERO_STAR;
 
 @Service
 @AllArgsConstructor
@@ -31,6 +31,9 @@ public class StoreService {
     private final MemberRepository memberRepository;
     private final StoreRepository storeRepository;
 
+    /**
+     * 매장등록기능, 파트너회원이라면 진행
+     */
     @Transactional
     public RegisterStore.Response registerStore(RegisterStore.Request registerStoreRequest) throws IOException {
         Member member = getPartnerAccount(registerStoreRequest.getMemberId());
@@ -53,6 +56,9 @@ public class StoreService {
                 .build()));
     }
 
+    /**
+     * 파트너회원을 검증
+     */
     private Member getPartnerAccount(String memberId) {
         Member member = memberRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new MemberException(USER_NOT_FOUND));
@@ -64,6 +70,9 @@ public class StoreService {
         return member;
     }
 
+    /**
+     * 매장 등록 시 중복된 매장이름을 검증
+     */
     private void checkDuplicateStoreName(RegisterStore.Request registerStoreRequest) {
         if (storeRepository.existsByStoreName(registerStoreRequest.getStoreName())
                 || storeRepository.existsByAddress(registerStoreRequest.getAddress())) {
@@ -71,6 +80,9 @@ public class StoreService {
         }
     }
 
+    /**
+     * 매장정렬기준에 따라 정렬된 매장 page를 return
+     */
     public Page<StoreResponse> getStores(SortingType sortingType, Pageable pageable, Double lat, Double lnt) {
         if (storeRepository.count() == 0) {
             throw new StoreException(STORE_EMPTY);
@@ -88,22 +100,34 @@ public class StoreService {
         }
     }
 
+    /**
+     *  이름순으로 정렬된 매장 return
+     */
     private Page<StoreResponse> getStoresByName(Pageable pageable) {
         return StoreResponse.fromEntities(storeRepository
                 .findAllByOrderByStoreNameAsc(pageable));
     }
 
+    /**
+     *  별점순으로 정렬된 매장 return
+     */
     private Page<StoreResponse> getStoresByRating(Pageable pageable) {
         return StoreResponse.fromEntities(storeRepository
                 .findAllByOrderByRatingDesc(pageable));
     }
 
+    /**
+     *  거리순으로 정렬된 매장 return
+     */
     private Page<StoreResponse> getStoresByDistance(Pageable pageable,
                                                     Double lat, Double lnt) {
         return StoreResponse.fromResults(storeRepository
                 .findAllByOrderByDistanceAsc(pageable, lat, lnt));
     }
 
+    /**
+     * 매장 상세정보 return
+     */
     public StoreResponse getStore(String storeName) {
         boolean exist = storeRepository.existsByStoreName(storeName);
 

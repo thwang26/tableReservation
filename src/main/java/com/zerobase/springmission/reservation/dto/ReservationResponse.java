@@ -7,6 +7,9 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * 예약 응답 객체
+ */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -16,10 +16,19 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
     boolean existsByAddress(String address);
 
+    /**
+     * 이름순 정렬
+     */
     Page<Store> findAllByOrderByStoreNameAsc(Pageable pageable);
 
+    /**
+     * 별점순 정렬
+     */
     Page<Store> findAllByOrderByRatingDesc(Pageable pageable);
 
+    /**
+     * 거리순 정렬
+     */
     @Query(value = "select NEW com.zerobase.springmission" +
             ".store.dto.StoreResult(s, " +
             "ROUND((6371*acos(cos(radians(:lat))*cos(radians(s.lat))" +

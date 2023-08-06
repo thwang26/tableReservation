@@ -20,6 +20,10 @@ import java.nio.charset.StandardCharsets;
 import static com.zerobase.springmission.global.exception.ErrorCode.RESULT_NOT_FOUND;
 import static com.zerobase.springmission.global.exception.ErrorCode.WRONG_RESPONSE;
 
+/**
+ * 도로명주소 -> 위도, 경도값 변환 시 사용되는 네이버 geocoding api
+ * 네이버 api key 값들은 보안을 위해 ignore 처리 하였습니다.
+ */
 @Service
 @RequiredArgsConstructor
 public class GeocodingService {
@@ -31,6 +35,9 @@ public class GeocodingService {
     @Value("${naver.api.endpoint}")
     private String ENDPOINT;
 
+    /**
+     * 네이버 geocoding 요청하여 도로명주소를 위도, 경도값으로 return
+     */
     public Coordinate getCoordinate(String address) throws IOException {
         address = URLEncoder.encode(address, StandardCharsets.UTF_8);
 
@@ -62,12 +69,18 @@ public class GeocodingService {
                 .build();
     }
 
+    /**
+     * 잘못된 요청시 error
+     */
     private void checkResponseCode(HttpsURLConnection conn) throws IOException {
         if (conn.getResponseCode() != 200) {
             throw new ApiException(WRONG_RESPONSE);
         }
     }
 
+    /**
+     * 검색결과가 없다면 error
+     */
     private void checkResultCount(JsonObject jsonObject) {
         int count = ((JsonObject) jsonObject.get("meta")).get("totalCount").getAsInt();
         if (count == 0) {

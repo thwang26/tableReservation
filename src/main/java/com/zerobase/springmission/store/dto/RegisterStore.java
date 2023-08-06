@@ -6,6 +6,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * 매장 등록 시 사용되는 객체
+ */
 public class RegisterStore {
 
     @Getter

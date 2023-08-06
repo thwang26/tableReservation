@@ -1,4 +1,4 @@
-###
+### 매장등록기능, jwt로 role을 확인 후 partner라면 매장을 등록합니다.
 POST http://localhost:8080/store/register-store
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTI4NDY0OCwiZXhwIjoxNjkxMjg4MjQ4fQ.isBHcsM2oIccYZymdYuFsLlRJzgb1LsI8jFybGymy6GoTbZWovffoLX2mOVBewAMl6J2zZJ4MACzhgiUaDmDdQ
 Content-Type: application/json
@@ -12,11 +12,11 @@ Content-Type: application/json
   "closeTime": "21:00"
 }
 
-###
+### 거리순으로 정렬합니다.
 GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=DISTANCE&lat=37.5189507&lnt=126.8033512
-###
+### 이름순으로 정렬합니다.
 GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=NAME&lat=37.5189507&lnt=126.8033512
-###
+### 별점순으로 정렬합니다.
 GET http://localhost:8080/store/get-stores?page=0&size=5&sortingType=RATING&lat=37.5189507&lnt=126.8033512
-###
+### 매장 상세정보를 가져옵니다.
 GET http://localhost:8080/store/get-store?storeName=부천원종점

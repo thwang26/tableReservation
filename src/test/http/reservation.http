@@ -1,8 +1,8 @@
-###
+### 해당 매장의 예약가능 시간을 가져옵니다.
 GET http://localhost:8080/reservation/available-reservation-time?storeName=부천원종점
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5gzIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2OTEzNTUxNTIsImV4cCI6MTY5MTM1ODc1Mn0.wm-NB7EzlfBsmXGb8ssYrnUvFdjlNqmj5_RSIzxyXS3n27D08hnVb8g4koV5RXM_XKjzQDRRDVSLcFi5wb9PvA
 
-###
+### 해당매장의 예약시간과 함께 예약을 요청합니다.
 POST http://localhost:8080/reservation/request-reservation
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5gzIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2OTEzNTUxNTIsImV4cCI6MTY5MTM1ODc1Mn0.wm-NB7EzlfBsmXGb8ssYrnUvFdjlNqmj5_RSIzxyXS3n27D08hnVb8g4koV5RXM_XKjzQDRRDVSLcFi5wb9PvA
 Content-Type: application/json
@@ -13,7 +13,7 @@ Content-Type: application/json
   "reservationTime": "06:00"
 }
 
-###
+### 예약요청을 승인합니다.
 POST http://localhost:8080/reservation/accept-reservation
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTM1MzQ1NSwiZXhwIjoxNjkxMzU3MDU1fQ.OFa9rQFDr5klRbNlOv13u9sbZH8RC9JHrFTh7YArjKxJgb_2enWqWI4v-qxQiZ1C01q7jM234jt_Vjpt_B-IKQ
 Content-Type: application/json
@@ -22,16 +22,17 @@ Content-Type: application/json
   "reservationId": "23080707100C"
 }
 
-###
+### 예약요청을 거부합니다. 취소사유가 함께 입력됩니다.
 POST http://localhost:8080/reservation/cancel-reservation
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTM1MzQ1NSwiZXhwIjoxNjkxMzU3MDU1fQ.OFa9rQFDr5klRbNlOv13u9sbZH8RC9JHrFTh7YArjKxJgb_2enWqWI4v-qxQiZ1C01q7jM234jt_Vjpt_B-IKQ
 Content-Type: application/json
 
 {
-  "reservationId": "23080609100JCY"
+  "reservationId": "23080609100JCY",
+  "cancelDescription": "재료가 소진되었습니다."
 }
 
-###
+### 매장을 도착하여 예약을 사용합니다.
 POST http://localhost:8080/reservation/use-reservation
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5gzIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE2OTEzNTUyNDMsImV4cCI6MTY5MTM1ODg0M30.KtGHsBS_CovcLUKeeGUYubXgpiF398IOktR6VWgn2l3d0dpHodkuo4n1WG6jDIVx2m-savlE_mZl_VCNzQerqQ
 Content-Type: application/json
@@ -40,6 +41,6 @@ Content-Type: application/json
   "reservationId": "23080707100C"
 }
 
-###
+### 나의 예약정보를 가져옵니다.
 GET http://localhost:8080/reservation/get-reservation
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5giLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTY5MTM2MTU1OSwiZXhwIjoxNjkxMzY1MTU5fQ.uCybnHb3ifAJ38KJMZ41-w1GdrXPC2W1XWA246eBkSxgVbyi6z3EPOkuB1D-rioSZ8L9soo2PF847zkMFrVjmw

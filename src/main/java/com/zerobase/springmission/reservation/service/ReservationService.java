@@ -33,6 +33,9 @@ public class ReservationService {
     MemberRepository memberRepository;
     StoreRepository storeRepository;
 
+    /**
+     * 해당매장의 예약 가능시간 가져오기
+     */
     public ReservationTimeResponse getAvailableReservationTime(String storeName) {
         boolean exist = storeRepository.existsByStoreName(storeName);
 
@@ -52,6 +55,9 @@ public class ReservationService {
                 .build();
     }
 
+    /**
+     * 해당매장의 오픈시간, 마감시간을 1시간 단위로 예약가능시간 list return
+     */
     private List<LocalTime> getTimeRangeList(LocalTime openTime, LocalTime closeTime) {
         List<LocalTime> timeList = new ArrayList<>();
         LocalTime current = openTime;
@@ -64,6 +70,11 @@ public class ReservationService {
         return timeList;
     }
 
+    /**
+     * 예약요청
+     * 예약은 최소 하루 전 해야한다
+     * 예약정보 저장 후 예약번호 return
+     */
     @Transactional
     public ReservationResponse requestReservation(ReservationRequest reservationRequest) {
         String reservationId = generateReservationId(reservationRequest);
@@ -87,6 +98,10 @@ public class ReservationService {
                         .build()));
     }
 
+    /**
+     * 예약번호 생성
+     * yyMMddHH + 매장id(3글자) + 임의의 대문자 한 글자 (12글자)
+     */
     private String generateReservationId(ReservationRequest reservationRequest) {
         String date = reservationRequest.getReservationDate()
                 .toString().substring(2).replaceAll("-", "");
@@ -108,6 +123,9 @@ public class ReservationService {
         return reservationIdBuilder.toString();
     }
 
+    /**
+     * 매장 예약 수락
+     */
     @Transactional
     public ReservationResponse acceptReservation(String reservationId, String memberId) {
         Reservation reservation = reservationRepository.findById(reservationId)
@@ -129,6 +147,9 @@ public class ReservationService {
                 .save(reservation));
     }
 
+    /**
+     * 매장 예약 취소
+     */
     @Transactional
     public ReservationResponse cancelReservation(CancelReservationRequest cancelReservationRequest,
                                                  String memberId) {
@@ -153,6 +174,10 @@ public class ReservationService {
                 .save(reservation));
     }
 
+    /**
+     * 매장예약 사용
+     * 날짜가 지났거나 10분 전에 도착하지 못한경우 사용불가
+     */
     @Transactional
     public ReservationResponse useReservation(String reservationId, String memberId) {
         Reservation reservation = reservationRepository.findById(reservationId)
@@ -183,6 +208,9 @@ public class ReservationService {
                 .save(reservation));
     }
 
+    /**
+     * 예약상태 확인
+     */
     private void checkReservation(ReservationType reservationType) {
         switch (reservationType) {
             case ACCEPTED:
@@ -198,6 +226,10 @@ public class ReservationService {
         }
     }
 
+    /**
+     * 매일 자정에 전날 예약상태를 취소상태로 변경
+     * 취소된 예약(취소사유 확인목적), 사용된 예약은 기록을 위해 변경하지 않음
+     */
     @Transactional
     @Scheduled(cron = "0 * * * * *") // 매일 12시 반복
     public void updateReservationTypeIfDatePassed() {
@@ -218,6 +250,9 @@ public class ReservationService {
         reservationRepository.saveAll(cancelledReservations);
     }
 
+    /**
+     * 나의 예약기록 return
+     */
     public List<ReservationInfo> getReservation(String memberId) {
         Member member = memberRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new MemberException(USER_NOT_FOUND));

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * member 기능
+ */
 @Slf4j
 @RestController
 @RequestMapping("/member")
@@ -22,12 +25,18 @@ public class MemberController {
     private final MemberService memberService;
     private final TokenProvider tokenProvider;
 
+    /**
+     * 회원가입기능
+     */
     @PostMapping("/sign-up")
     public SignUp.Response signUp(@RequestBody SignUp.Request signUpRequest) {
         log.info("detected new sign-up attempts -> " + signUpRequest.getMemberId());
         return memberService.createAccount(signUpRequest);
     }
 
+    /**
+     * 로그인 기능, 로그인 성공 시 토큰을 발급하여 return
+     */
     @PostMapping("/sign-in")
     public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest) {
         Member member = memberService.authenticate(signInRequest);

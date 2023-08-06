@@ -6,6 +6,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * 회원가입 시 사용되는 객체
+ */
 public class SignUp {
 
     @Getter

@@ -3,6 +3,9 @@ package com.zerobase.springmission.global.exception;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 에러발생 시의 에러코드
+ */
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {

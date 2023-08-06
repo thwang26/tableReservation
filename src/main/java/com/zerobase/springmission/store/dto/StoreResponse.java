@@ -9,6 +9,9 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 정렬된 매장을 page로 return 해 주는 객체
+ */
 @Getter
 @Setter
 @NoArgsConstructor

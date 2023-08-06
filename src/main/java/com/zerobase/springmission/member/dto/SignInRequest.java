@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * 로그인시 사용되는 객체
+ */
 @Getter
 @Setter
 @AllArgsConstructor

@@ -1,4 +1,4 @@
-###
+### 회원가입기능
 POST http://localhost:8080/member/sign-up
 Content-Type: application/json
 
@@ -9,7 +9,7 @@ Content-Type: application/json
   "memberType": "USER"
 }
 
-###
+### 로그인기능, 로그인 성공 시 jwt를 발급합니다
 POST http://localhost:8080/member/sign-in
 Content-Type: application/json
 

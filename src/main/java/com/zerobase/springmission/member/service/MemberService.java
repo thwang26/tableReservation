@@ -28,6 +28,11 @@ public class MemberService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("couldn't find user -> " + memberId));
     }
 
+    /**
+     * 회원가입 요청 시 계정을 생성하는 로직
+     * 이미 가입되어있다면 에러처리
+     * 가입 시 db에 비밀번호 암호화 하여 저장
+     */
     @Transactional
     public SignUp.Response createAccount(SignUp.Request signUpRequest) {
         boolean exists = memberRepository.existsByMemberId(signUpRequest.getMemberId());
@@ -40,6 +45,10 @@ public class MemberService implements UserDetailsService {
         return SignUp.Response.fromEntity(member);
     }
 
+    /**
+     * 로그인 로직
+     * db의 비밀번호와 요청의 비밀번호를 대조
+     */
     public Member authenticate(SignInRequest signInRequest) {
         Member member = memberRepository.findByMemberId(signInRequest.getMemberId())
                 .orElseThrow(() -> new MemberException(ACCOUNT_DOES_NOT_EXIST));
