@@ -162,7 +162,6 @@
     |   `-- resources
     |       |-- application-API-KEY.properties
     |       |-- application.properties
-    |       |-- data.sql
     |       |-- static
     |       `-- templates
     `-- test
