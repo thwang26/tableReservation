@@ -1,0 +1,24 @@
+### 예약을 사용한 후 리뷰를 작성합니다.
+POST http://localhost:8080/review/write-review
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DshpDri5giLCJyb2xlcyI6WyJVU0VSIl0sImlhdCI6MTY5MTM4NTgyNSwiZXhwIjoxNjkxMzg5NDI1fQ.0vVeuj8qFkWrUY03DsWPVX2vWgUGZIXstKtU6DygGyucF4oNfZEfipy2v9sy7CHxztuOIMjUIsNAilPkpyW08A
+Content-Type: application/json
+
+{
+  "reservationId": "23080910100Y",
+  "title": "오늘은 별로였어요",
+  "contents": "맛없네요..",
+  "ratingType": "ONE_STAR"
+}
+
+### 리뷰에 답글을 작성합니다.
+POST http://localhost:8080/review/write-reply
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTM4Nzk0OSwiZXhwIjoxNjkxMzkxNTQ5fQ.3Np-2rTBN59Zfbi4YNMKuWR8RuFJeIKDbmVYD6hb6CL6aG0tsmBu5tzDGj7XKWK5n1jagxXUK0Ri3Qgmkt1ZkQ
+Content-Type: application/json
+
+{
+  "reservationId": "23080910100Y",
+  "reply": "유감입니다..."
+}
+
+### 리뷰를 가져옵니다.
+GET http://localhost:8080/review/get-review/1

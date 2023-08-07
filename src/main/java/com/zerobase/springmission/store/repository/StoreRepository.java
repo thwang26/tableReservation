@@ -5,6 +5,7 @@ import com.zerobase.springmission.store.dto.StoreResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -44,4 +45,13 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
     Store findByStoreName(String storeName);
 
     Store findByStoreId(Long storeId);
+
+    /**
+     * 리뷰 작성에 따른 별점 평균 계산
+     */
+    @Modifying
+    @Query("UPDATE Store s SET s.rating = " +
+            "(SELECT AVG(r.rating) FROM Review r WHERE r.store = s) " +
+            "WHERE s.storeId = :storeId")
+    void updateStoreRatingFromReviewRatings(@Param("storeId") Long storeId);
 }

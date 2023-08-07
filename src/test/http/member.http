@@ -3,7 +3,7 @@ POST http://localhost:8080/member/sign-up
 Content-Type: application/json
 
 {
-  "memberId": "황태원손님3",
+  "memberId": "황태원손님",
   "password": "secretpassword",
   "phone": "123-456-7890",
   "memberType": "USER"
@@ -14,6 +14,6 @@ POST http://localhost:8080/member/sign-in
 Content-Type: application/json
 
 {
-  "memberId": "황태원손님",
+  "memberId": "황태원점장",
   "password": "secretpassword"
 }

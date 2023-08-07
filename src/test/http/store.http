@@ -1,6 +1,6 @@
 ### 매장등록기능, jwt로 role을 확인 후 partner라면 매장을 등록합니다.
 POST http://localhost:8080/store/register-store
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTI4NDY0OCwiZXhwIjoxNjkxMjg4MjQ4fQ.isBHcsM2oIccYZymdYuFsLlRJzgb1LsI8jFybGymy6GoTbZWovffoLX2mOVBewAMl6J2zZJ4MACzhgiUaDmDdQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLtmantg5zsm5DsoJDsnqUiLCJyb2xlcyI6WyJQQVJUTkVSIl0sImlhdCI6MTY5MTM4NTg0OSwiZXhwIjoxNjkxMzg5NDQ5fQ.DjLZYkCswIsn6Abnujf5Obw1Z2UFovS_1RCZDbmZDlRGXQ6JJ9YRJ_eC8oD_C4xWsiJZSFEeqwpXJMhTu-INBQ
 Content-Type: application/json
 
 {

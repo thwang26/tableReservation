@@ -34,4 +34,10 @@ public class GlobalExceptionHandler {
         log.error("{} is occurred.", e.getErrorCode());
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
+
+    @ExceptionHandler(ReviewException.class)
+    public ErrorResponse handleReviewException(ReviewException e) {
+        log.error("{} is occurred.", e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
 }

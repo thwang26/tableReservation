@@ -72,7 +72,7 @@ public class ReservationService {
 
     /**
      * 예약요청
-     * 예약은 최소 하루 전 해야한다
+     * 예약은 최소 하루 전, 운영시간 사이에 예약할 수 있다.
      * 예약정보 저장 후 예약번호 return
      */
     @Transactional
@@ -83,7 +83,12 @@ public class ReservationService {
         Store store = storeRepository.findByStoreName(reservationRequest.getStoreName());
 
         LocalDate date = reservationRequest.getReservationDate();
-        if (LocalDate.now().isAfter(date.minusDays(1))) {
+        LocalTime time = reservationRequest.getReservationTime();
+        LocalTime openTime = store.getOpenTime();
+        LocalTime closeTime = store.getCloseTime();
+
+        if (LocalDate.now().isAfter(date.minusDays(1)) ||
+        time.isBefore(openTime) || time.isAfter(closeTime.minusHours(1))) {
             throw new ReservationException(CANNOT_BE_RESERVED);
         }
 
@@ -231,7 +236,7 @@ public class ReservationService {
      * 취소된 예약(취소사유 확인목적), 사용된 예약은 기록을 위해 변경하지 않음
      */
     @Transactional
-    @Scheduled(cron = "0 * * * * *") // 매일 12시 반복
+    @Scheduled(cron = "0 0 0 * * *") // 매일 12시 반복
     public void updateReservationTypeIfDatePassed() {
         List<Reservation> reservations = reservationRepository.findAll();
 

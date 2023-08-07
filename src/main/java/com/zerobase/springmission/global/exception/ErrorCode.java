@@ -29,7 +29,12 @@ public enum ErrorCode {
     UN_ACCEPTED_RESERVATION("사용할 수 없는 예약입니다."),
     NO_USE_PERMISSION("예약사용 권한이 없습니다."),
     RESERVATION_TIME_EXCEEDED("예약시간을 초과하였습니다."),
-    CANNOT_BE_RESERVED("예약할 수 없는 날짜입니다.");
-
+    CANNOT_BE_RESERVED("예약할 수 없는 날짜입니다."),
+    NO_REVIEW_PERMISSION("리뷰 작성 권한이 없습니다."),
+    CANNOT_WRITE_REVIEW("리뷰를 작성하려면 예약을 사용해야합니다."),
+    ALREADY_WRITTEN_REVIEW("이미 리뷰가 작성되었습니다."),
+    REVIEW_NOT_FOUND("리뷰가 없습니다."),
+    ALREADY_WRITTEN_REPLY("이미 답글이 작성되었습니다."),
+    NO_REPLY_PERMISSION("답글 작성 권한이 없습니다.");
     private String description;
 }
